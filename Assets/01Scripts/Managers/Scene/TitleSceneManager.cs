@@ -10,8 +10,10 @@ public class TitleSceneManager : MonoBehaviour
 
     private void Awake()
     {
-        if (GameObject.Find("StartButton").TryGetComponent<Button>(out startBtn))
-            startBtn.onClick.AddListener(StartGame);
+        var btns = GameObject.Find("StartButton").GetComponentsInChildren<Button>();
+
+        for (int i = 0; i < btns.Length; i++)
+            btns[i].onClick.AddListener(StartGame);
     }
 
     private void StartGame()
