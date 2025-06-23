@@ -17,6 +17,12 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     // physBall
     private bool _mouseButton1;
 
+    private void Start()
+    {
+        StartGame(GameMode.Host);
+    }
+
+
     private void Update()
     {
         // ball
@@ -123,23 +129,5 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             Scene = scene,
             SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
         });
-
-
-       
-    }
-
-    private void OnGUI()
-    {
-        if (_runner == null)
-        {
-            if (GUI.Button(new Rect(0, 0, 500, 400), "Host"))
-            {
-                StartGame(GameMode.Host);
-            }
-            if (GUI.Button(new Rect(0, 400, 500, 400), "Join"))
-            {
-                StartGame(GameMode.Client);
-            }
-        }
     }
 }
